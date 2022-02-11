@@ -1,15 +1,19 @@
 package model;
 
+import java.util.ArrayList;
+
 public class Room {
 	
 	private String name;
 	private boolean full;
 	private Seat seats[][];
+	private ArrayList<CinemaShow> shows;
 	
 	public Room(String name, int rows, int columns) {
 		this.name = name;
 		seats = new Seat[rows][columns];
 		full = false;
+		shows = new ArrayList<>();
 	}
 	
 	public String reserveSeat(int row, int column) {
@@ -23,7 +27,6 @@ public class Room {
 		} catch (ArrayIndexOutOfBoundsException e) {
 			message = "That seat does not exist";
 		}
-	
 		return message;
 	}
 	
@@ -42,6 +45,10 @@ public class Room {
 
 	public boolean isFull() {
 		return full;
+	}
+	
+	public ArrayList<CinemaShow> getShows(){
+		return shows;
 	}
 	
 	
