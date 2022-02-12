@@ -10,9 +10,9 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="293.0" prefWidth="565.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LoginController">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="300.0" prefWidth="570.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="application.LogInController">
    <children>
-      <VBox alignment="CENTER" prefHeight="293.0" prefWidth="308.0" style="-fx-background-color: #303;" HBox.hgrow="ALWAYS">
+      <VBox alignment="CENTER" prefHeight="293.0" prefWidth="308.0" style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
          <children>
             <ImageView fitHeight="250.0" fitWidth="250.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -21,7 +21,7 @@
             </ImageView>
          </children>
       </VBox>
-      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="359.0" HBox.hgrow="ALWAYS">
+      <VBox alignment="CENTER" prefHeight="400.0" prefWidth="360.0" style="-fx-background-color: white;" HBox.hgrow="ALWAYS">
          <children>
             <Label text="Cinema Icesi">
                <font>
@@ -46,7 +46,7 @@
                         <Insets bottom="10.0" left="30.0" right="30.0" />
                      </VBox.margin>
                   </TextField>
-                  <Button fx:id="btnLogin" mnemonicParsing="false" onAction="#clickLogin" text="Ingresar">
+                  <Button fx:id="btnLogIn" mnemonicParsing="false" onAction="#logIn" text="Ingresar">
                      <font>
                         <Font size="18.0" />
                      </font>

@@ -1,6 +1,9 @@
 package model;
 
+
 public class UniversityWalfarePerson extends Person {
+
+	private static final long serialVersionUID = 1L;
 
 	public UniversityWalfarePerson(String name, String id) {
 		super(name, id);
