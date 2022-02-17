@@ -18,12 +18,10 @@ public class Cinema {
 
 	public Cinema() {
 		rooms = new ArrayList<>();
-		// buildRoom("mini", 4, 7);
-		// buildRoom("medium", 6, 7);
 		films = new ArrayList<>();
 		shows = new ArrayList<>();
 		universityWPersons = new ArrayList<>();
-		readIds();
+		readData();
 	}
 
 	public void buildRoom(String name, int rows, int columns) {
@@ -54,11 +52,14 @@ public class Cinema {
 		if(!found) {
 			throw new LogInException();
 		}
-		return found;
-		
+		return found;	
 	}
 
-	public void readIds() {
+	public void readData() {
+		//Crear data de las salas
+		buildRoom("Minisala", 4, 7);
+		buildRoom("Sala media", 6, 7);
+		
 		try {
 			BufferedReader explorer = new BufferedReader(new FileReader("persons.txt"));
 			String currentLine;
@@ -72,38 +73,20 @@ public class Cinema {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		
 	}
 
 	public ArrayList<Room> getRooms() {
 		return rooms;
 	}
 
-	public void setRooms(ArrayList<Room> rooms) {
-		this.rooms = rooms;
-	}
-
-	public ArrayList<Film> getFilms() {
-		return films;
-	}
-
-	public void setFilms(ArrayList<Film> films) {
-		this.films = films;
-	}
-
 	public ArrayList<CinemaShow> getShows() {
 		return shows;
 	}
 
-	public void setShows(ArrayList<CinemaShow> shows) {
-		this.shows = shows;
-	}
-
 	public ArrayList<UniversityWalfarePerson> getUniversityWPersons() {
 		return universityWPersons;
-	}
-
-	public void setUniversityWPersons(ArrayList<UniversityWalfarePerson> universityWPersons) {
-		this.universityWPersons = universityWPersons;
 	}
 	
 
