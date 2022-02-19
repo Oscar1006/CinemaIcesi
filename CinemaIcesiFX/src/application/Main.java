@@ -18,10 +18,11 @@ public class Main extends Application {
 	public static final String FUNCTION_FXML = "../view/Function.fxml";
 	
 	public static final String LOGO_IMG = "file:../../images/logo.png";
+	public static final String REEL_IMG = "file:../../images/reel.png";
 	
 	
 	private Parent root;
-	private Stage currentStage;
+	private Stage stage;
 	private Scene scene;
 	
 	@Override
@@ -32,25 +33,37 @@ public class Main extends Application {
 			primaryStage.setScene(scene);
 			primaryStage.getIcons().add(new Image(LOGO_IMG));
 			primaryStage.show();
-		} catch(Exception e) {
-			e.printStackTrace();
+		} catch(Exception ex) {
+			ex.printStackTrace();
 		}
 	}
 	
-	public void switchScene(Stage s, String fxml) {
+	public void switchScene(Stage currentStage, String nextScene) {
 		try {
-			root = FXMLLoader.load(getClass().getResource(fxml));
+			root = FXMLLoader.load(getClass().getResource(nextScene));
 			scene = new Scene(root);
-			currentStage = s;
 			currentStage.setScene(scene);
-		} catch (IOException er) {
-			er.printStackTrace();
+		} catch (IOException ex) {
+			ex.printStackTrace();
 		}	
 	}
+	
+	public void showWindow(String windowScene, String windowIcon) {
+		try {
+			root = FXMLLoader.load(getClass().getResource(windowScene));
+			stage = new Stage(); 
+			scene = new Scene(root);
+			stage.getIcons().add(new Image(windowIcon));
+			stage.setScene(scene);
+			stage.show();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}	
+	}
+	
 	
 	public static void main(String[] args) {
 		launch(args);
 	}
-	
 	
 }

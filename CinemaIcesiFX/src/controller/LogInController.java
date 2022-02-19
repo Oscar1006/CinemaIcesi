@@ -27,27 +27,27 @@ public class LogInController {
 	
 	private Stage currentStage;
 	
-	
+	private Alert alert;
 	@FXML
 	private void initialize() {
 		icesinema = new Cinema();
 		loginMain = new Main();
+		alert = new Alert(AlertType.ERROR);
 	}
 	
 	@FXML
-	public void logIn(ActionEvent e) {
+	public void logIn(ActionEvent ev) {
 		
 		String idToCheck = txtId.getText();
 		
 		try {
 			icesinema.logInUWPerson(idToCheck);
-			currentStage = (Stage)((Node)e.getSource()).getScene().getWindow();
+			currentStage = (Stage)((Node)ev.getSource()).getScene().getWindow();
 			loginMain.switchScene(currentStage, Main.PRINCIPAL_FXML);
-		} catch (LogInException error) {
-			Alert alert = new Alert(AlertType.ERROR);
+		} catch (LogInException ex) {
 			alert.setTitle("Error");
 			alert.setHeaderText("Usuario no autorizado");
-			alert.setContentText(error.getMessage());
+			alert.setContentText(ex.getMessage());
 			alert.showAndWait();
 		}
 	}
