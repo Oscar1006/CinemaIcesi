@@ -1,6 +1,5 @@
 package controller;
 
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -73,7 +72,7 @@ public class FunctionController {
 	}
     
     @FXML
-	public void createFunction(ActionEvent e) throws IOException {
+	public void createFunction(ActionEvent e) {
 		String filmName = txtFilmName.getText();
 		String room = comboBoxRooms.getSelectionModel().getSelectedItem();
 		System.out.println(filmName+"  "+room);

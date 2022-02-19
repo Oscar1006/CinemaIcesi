@@ -36,9 +36,13 @@ public class PrincipalController{
 	}
 
     @FXML
-    public void createFunction(ActionEvent event) throws IOException {
+    public void createFunction(ActionEvent event) {
     	loader = new FXMLLoader(getClass().getResource("../view/Function.fxml"));
-    	root = loader.load();
+    	try {
+			root = loader.load();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     	
     	scene = new Scene(root);
     	stage = new Stage();

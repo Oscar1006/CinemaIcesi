@@ -1,14 +1,13 @@
 package controller;
 
-import java.io.IOException;
 
+import application.Main;
 import exception.LogInException;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
@@ -24,35 +23,34 @@ public class LogInController {
 	
 	private Cinema icesinema;
 	
+	private Main loginMain;
 	
-	private Stage stage;
-	private Scene scene;
-	private Parent root;
+	private Stage currentStage;
+	
 	
 	@FXML
 	private void initialize() {
 		icesinema = new Cinema();
+		loginMain = new Main();
 	}
 	
 	@FXML
-	public void logIn(ActionEvent e) throws IOException {
+	public void logIn(ActionEvent e) {
 		
 		String idToCheck = txtId.getText();
 		
 		try {
-			if (icesinema.logInUWPerson(idToCheck)) {
-				switchToPrincipal(e);
-			}
+			icesinema.logInUWPerson(idToCheck);
+			currentStage = (Stage)((Node)e.getSource()).getScene().getWindow();
+			loginMain.switchScene(currentStage, Main.PRINCIPAL_FXML);
 		} catch (LogInException error) {
-			System.out.println(error.getMessage());
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText("Usuario no autorizado");
+			alert.setContentText(error.getMessage());
+			alert.showAndWait();
 		}
 	}
 	
-	public void switchToPrincipal(ActionEvent e) throws IOException {
-		root = FXMLLoader.load(getClass().getResource("../view/Principal.fxml"));
-		stage = (Stage)((Node)e.getSource()).getScene().getWindow();
-		scene = new Scene(root);
-		stage.setScene(scene);
-		stage.show();
-	}
+	
 }
