@@ -4,9 +4,8 @@ import application.Main;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-//import model.Cinema;
 
-public class PrincipalController{
+public class PrincipalController extends Controller{
 
     @FXML
     private Button btnCreateFunction;
@@ -17,19 +16,15 @@ public class PrincipalController{
     @FXML
     private Button btnReserveSeat;
     
-	//private Cinema icesinema;
     
-    private Main principalMain;
-	
 	@FXML
 	private void initialize() {
-		//icesinema = new Cinema();
-		principalMain = new Main();
+		
 	}
 
     @FXML
-    public void createFunction(ActionEvent event) {
-    	principalMain.showWindow(Main.FUNCTION_FXML, Main.REEL_IMG);
+    public void createFunction() {
+    	super.getMain().showWindow(new FunctionController(), Main.FUNCTION_FXML, Main.REEL_IMG);
     }
 
     @FXML

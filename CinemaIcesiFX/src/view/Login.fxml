@@ -38,7 +38,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="txtId">
+                  <TextField fx:id="txtId" onKeyTyped="#noSpace" onAction="#logIn">
                      <font>
                         <Font size="18.0" />
                      </font>

@@ -4,9 +4,12 @@ import javafx.scene.image.Image;
 
 import java.io.IOException;
 
+import controller.Controller;
+import controller.LogInController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
+import model.Cinema;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 
@@ -22,25 +25,58 @@ public class Main extends Application {
 	
 	
 	private Parent root;
-	private Stage stage;
+	private Stage currentStage;
+	private Stage newStage;
 	private Scene scene;
+	private FXMLLoader loader;
 	
+	private Cinema icesinema;
+	
+	public Main() {
+		icesinema = new Cinema();
+	}
+
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			root = FXMLLoader.load(getClass().getResource(LOGIN_FXML));
-			scene = new Scene(root);
-			primaryStage.setScene(scene);
-			primaryStage.getIcons().add(new Image(LOGO_IMG));
-			primaryStage.show();
+			showWindow(new LogInController(), LOGIN_FXML, LOGO_IMG);
+			
 		} catch(Exception ex) {
 			ex.printStackTrace();
 		}
 	}
 	
-	public void switchScene(Stage currentStage, String nextScene) {
+	public void showWindow(Controller controller, String windowScene, String windowIcon) {
 		try {
-			root = FXMLLoader.load(getClass().getResource(nextScene));
+			loader = new FXMLLoader(getClass().getResource(windowScene));
+			
+			root = loader.load();
+			
+			controller = loader.getController();
+			controller.setMain(this);
+			 
+			scene = new Scene(root);
+			
+			newStage = new Stage();
+			newStage.getIcons().add(new Image(windowIcon));
+			newStage.setScene(scene);
+			newStage.show();
+			currentStage = newStage;
+		} catch (IOException e) {
+			e.printStackTrace();
+		}	
+	}
+	
+	public void switchScene(Controller controller, String nextScene) {
+		try {
+			//root = FXMLLoader.load(getClass().getResource(nextScene));
+			loader = new FXMLLoader(getClass().getResource(nextScene));
+			
+			root = loader.load();
+			
+			controller = loader.getController();
+			controller.setMain(this);
+			
 			scene = new Scene(root);
 			currentStage.setScene(scene);
 		} catch (IOException ex) {
@@ -48,20 +84,10 @@ public class Main extends Application {
 		}	
 	}
 	
-	public void showWindow(String windowScene, String windowIcon) {
-		try {
-			root = FXMLLoader.load(getClass().getResource(windowScene));
-			stage = new Stage(); 
-			scene = new Scene(root);
-			stage.getIcons().add(new Image(windowIcon));
-			stage.setScene(scene);
-			stage.show();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}	
+	public Cinema getIcesinema() {
+		return icesinema;
 	}
-	
-	
+
 	public static void main(String[] args) {
 		launch(args);
 	}

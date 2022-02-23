@@ -5,7 +5,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Date;
+import java.util.Calendar;
 
 import exception.LogInException;
 
@@ -34,7 +34,7 @@ public class Cinema {
 		films.add(newFilm);
 	}
 
-	public void createCinemaFunction(Film f, Date d, Room r) {
+	public void createCinemaFunction(Film f, Calendar d, Room r) {
 		CinemaShow function = new CinemaShow(f, d, r);
 		shows.add(function);
 	}
@@ -73,7 +73,6 @@ public class Cinema {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
 		
 	}
 

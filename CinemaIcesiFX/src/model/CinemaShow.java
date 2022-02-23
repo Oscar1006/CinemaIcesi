@@ -1,14 +1,14 @@
 package model;
 
-import java.util.Date;
+import java.util.Calendar;
 
 public class CinemaShow {
 	
 	private Film film;
-	private Date date;
+	private Calendar date;
 	private Room room;
 	
-	public CinemaShow(Film f, Date d, Room r) {
+	public CinemaShow(Film f, Calendar d, Room r) {
 		film = f;
 		date = d;
 		room = r;
@@ -22,11 +22,11 @@ public class CinemaShow {
 		this.film = film;
 	}
 
-	public Date getDate() {
+	public Calendar getDate() {
 		return date;
 	}
 
-	public void setDate(Date date) {
+	public void setDate(Calendar date) {
 		this.date = date;
 	}
 
@@ -37,6 +37,4 @@ public class CinemaShow {
 	public void setRoom(Room room) {
 		this.room = room;
 	}
-	
-
 }

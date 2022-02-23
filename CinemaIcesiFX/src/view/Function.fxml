@@ -48,30 +48,35 @@
                   <Insets left="10.0" right="10.0" />
                </HBox.margin>
             </Label>
-            <DatePicker fx:id="dPDate" />
+            <DatePicker fx:id="dPFunctionDay" prefWidth="222.0" />
          </children>
       </HBox>
-      <HBox alignment="CENTER" prefHeight="70.0" prefWidth="200.0">
+      <HBox alignment="CENTER" prefHeight="70.0" prefWidth="270.0">
          <children>
             <Label text="Hora: ">
                <HBox.margin>
                   <Insets left="10.0" right="10.0" />
                </HBox.margin>
             </Label>
-            <Spinner fx:id="spHours" editable="true" prefHeight="25.0" prefWidth="70.0">
+            <Spinner fx:id="spHours" editable="false" prefHeight="25.0" prefWidth="60.0">
                <HBox.margin>
-                  <Insets left="10.0" right="10.0" />
+                  <Insets left="10.0" right="5.0" />
                </HBox.margin>
             </Spinner>
             <Label text=":" />
-            <Spinner fx:id="spMinutes" editable="true" prefHeight="25.0" prefWidth="70.0">
+            <Spinner fx:id="spMinutes" editable="false" prefHeight="25.0" prefWidth="60.0">
                <HBox.margin>
-                  <Insets left="10.0" right="10.0" />
+                  <Insets left="5.0" right="10.0" />
                </HBox.margin>
             </Spinner>
-            <ToggleButton fx:id="btnMeridiem" mnemonicParsing="false" text="AM">
+            <ToggleButton fx:id="togAM" mnemonicParsing="false" text="AM">
                <HBox.margin>
-                  <Insets left="10.0" right="10.0" />
+                  <Insets left="10.0" right="2.0" />
+               </HBox.margin>
+            </ToggleButton>
+            <ToggleButton fx:id="togPM" mnemonicParsing="false" text="PM">
+               <HBox.margin>
+                  <Insets left="2.0" right="10.0" />
                </HBox.margin>
             </ToggleButton>
          </children>
@@ -83,7 +88,7 @@
                   <Insets left="10.0" right="10.0" />
                </HBox.margin>
             </Label>
-            <TextField prefWidth="70.0">
+            <TextField fx:id="txtMinutesDuration" onKeyTyped="#only3Numbers" prefWidth="70.0">
                <HBox.margin>
                   <Insets left="10.0" right="10.0" />
                </HBox.margin>
