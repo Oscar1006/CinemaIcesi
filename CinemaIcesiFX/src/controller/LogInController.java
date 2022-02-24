@@ -12,6 +12,9 @@ import javafx.scene.control.TextField;
 
 public class LogInController extends Controller {
 
+	public LogInController() {
+	}
+
 	@FXML
 	private TextField txtId;
 	

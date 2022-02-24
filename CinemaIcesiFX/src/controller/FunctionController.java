@@ -6,10 +6,14 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
+
+import application.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.DateCell;
@@ -22,11 +26,11 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Callback;
 import javafx.util.converter.LocalDateStringConverter;
-import model.Cinema;
 import model.Film;
 import model.Room;
 
 public class FunctionController extends Controller{
+
 
 	@FXML
 	private TextField txtFilmName;
@@ -62,7 +66,7 @@ public class FunctionController extends Controller{
 	@FXML
 	private Button btnCreateFunction;
 
-	private Cinema icesinema;
+	//private Cinema icesinema;
 	
 	private Film film;
 	private String filmName;
@@ -77,15 +81,19 @@ public class FunctionController extends Controller{
 	
 	private Room functionRoom;
 	private String roomName;
+	
+
+	private Alert alert;
 
 	@FXML
-	private void initialize() {
-		icesinema = new Cinema();
-
+	public void initialize() {
+		//icesinema = new Cinema();
+		alert = new Alert(AlertType.ERROR);
+		Main mian = getMain();
 		// Rooms options comboBox
 		rooms = new ArrayList<String>();
-		for (int i = 0; i < icesinema.getRooms().size(); i++) {
-			rooms.add(icesinema.getRooms().get(i).getName());
+		for (int i = 0; i < super.getMain().getIcesinema().getRooms().size(); i++) {
+			rooms.add(super.getMain().getIcesinema().getRooms().get(i).getName());
 		}
 		observableRooms = FXCollections.observableList(rooms);
 		comboBoxRooms.setItems(observableRooms);
@@ -121,6 +129,7 @@ public class FunctionController extends Controller{
 		toggleAM_PM = new ToggleGroup();
 		togAM.setToggleGroup(toggleAM_PM);
 		togPM.setToggleGroup(toggleAM_PM);
+		togAM.setSelected(true);
 
 	}
 	
@@ -134,31 +143,40 @@ public class FunctionController extends Controller{
 
 	@FXML
 	public void createFunction(ActionEvent e) {
-		filmName = txtFilmName.getText();
-		filmDuration = Integer.parseInt(txtMinutesDuration.getText());
-		film = new Film(filmName, filmDuration);
-		
-		year = dPFunctionDay.getValue().getYear();
-		month = dPFunctionDay.getValue().getMonthValue();
-		day = dPFunctionDay.getValue().getDayOfMonth();
-		hour = spHours.getValue();
-		if(toggleAM_PM.getSelectedToggle().equals(togPM)) {
-			hour += 12;
-		}
-		minute = spMinutes.getValue();
-		
-		date = new GregorianCalendar(year, month, day, hour, minute);
-		
-		roomName = comboBoxRooms.getSelectionModel().getSelectedItem();
-		boolean found = false;
-		for (int i = 0; i < icesinema.getRooms().size() && !found; i++) {
-			if (icesinema.getRooms().get(i).getName().equals(roomName)) {
-				functionRoom = icesinema.getRooms().get(i);
-				found = true;
+		if (txtFilmName.getText().isEmpty() || txtMinutesDuration.getText().isEmpty() || comboBoxRooms.getValue()==null) {
+			alert.setTitle("Error");
+			alert.setHeaderText("Por favor llene todos las campos");
+			alert.showAndWait();
+		}else {
+			//Create film
+			filmName = txtFilmName.getText();
+			filmDuration = Integer.parseInt(txtMinutesDuration.getText());
+			film = new Film(filmName, filmDuration);
+			
+			//Create Calendar
+			year = dPFunctionDay.getValue().getYear();
+			month = dPFunctionDay.getValue().getMonthValue();
+			day = dPFunctionDay.getValue().getDayOfMonth();
+			hour = spHours.getValue();
+			if(toggleAM_PM.getSelectedToggle().equals(togPM)) {
+				hour += 12;
 			}
+			minute = spMinutes.getValue();
+			date = new GregorianCalendar(year, month, day, hour, minute);
+			
+			//Select room
+			roomName = comboBoxRooms.getSelectionModel().getSelectedItem();
+			boolean found = false;
+			for (int i = 0; i < super.getMain().getIcesinema().getRooms().size() && !found; i++) {
+				if (super.getMain().getIcesinema().getRooms().get(i).getName().equals(roomName)) {
+					functionRoom = super.getMain().getIcesinema().getRooms().get(i);
+					found = true;
+				}
+			}
+			
+			//Create function
+			super.getMain().getIcesinema().createCinemaFunction(film, date, functionRoom);
 		}
 		
-		icesinema.createCinemaFunction(film, date, functionRoom);
 	}
-
 }

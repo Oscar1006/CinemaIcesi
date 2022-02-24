@@ -7,7 +7,9 @@ import javafx.scene.control.Button;
 
 public class PrincipalController extends Controller{
 
-    @FXML
+    
+
+	@FXML
     private Button btnCreateFunction;
 
     @FXML
@@ -24,7 +26,7 @@ public class PrincipalController extends Controller{
 
     @FXML
     public void createFunction() {
-    	super.getMain().showWindow(new FunctionController(), Main.FUNCTION_FXML, Main.REEL_IMG);
+    	super.getMain().showWindow(Main.FUNCTION_FXML, Main.REEL_IMG);
     }
 
     @FXML

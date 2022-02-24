@@ -6,11 +6,16 @@ public abstract class Controller {
 
 	private Main main;
 	
+	
+	public Controller() {
+		//this.main = new Main();
+	}
+	
 	public Main getMain() {
 		return main;
 	}
 	public void setMain(Main main) {
-		this.main= main;
+		this.main = main;
 	}
 
 }

@@ -30,29 +30,25 @@ public class Main extends Application {
 	private Scene scene;
 	private FXMLLoader loader;
 	
-	private Cinema icesinema;
+	private Cinema icesinema = new Cinema();
 	
-	public Main() {
-		icesinema = new Cinema();
-	}
-
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			showWindow(new LogInController(), LOGIN_FXML, LOGO_IMG);
+			showWindow( LOGIN_FXML, LOGO_IMG);
 			
 		} catch(Exception ex) {
 			ex.printStackTrace();
 		}
 	}
 	
-	public void showWindow(Controller controller, String windowScene, String windowIcon) {
+	public void showWindow(String windowScene, String windowIcon) {
 		try {
 			loader = new FXMLLoader(getClass().getResource(windowScene));
 			
 			root = loader.load();
 			
-			controller = loader.getController();
+			Controller controller = loader.getController();
 			controller.setMain(this);
 			 
 			scene = new Scene(root);
@@ -69,7 +65,6 @@ public class Main extends Application {
 	
 	public void switchScene(Controller controller, String nextScene) {
 		try {
-			//root = FXMLLoader.load(getClass().getResource(nextScene));
 			loader = new FXMLLoader(getClass().getResource(nextScene));
 			
 			root = loader.load();
