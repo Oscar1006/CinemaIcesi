@@ -2,7 +2,7 @@ package controller;
 
 import application.Main;
 
-public abstract class Controller {
+public class Controller {
 
 	private Main main;
 	

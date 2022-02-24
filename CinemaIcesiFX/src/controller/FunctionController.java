@@ -7,7 +7,6 @@ import java.util.Calendar;
 import java.util.GregorianCalendar;
 import java.util.List;
 
-import application.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -89,15 +88,7 @@ public class FunctionController extends Controller{
 	public void initialize() {
 		//icesinema = new Cinema();
 		alert = new Alert(AlertType.ERROR);
-		Main mian = getMain();
-		// Rooms options comboBox
-		rooms = new ArrayList<String>();
-		for (int i = 0; i < super.getMain().getIcesinema().getRooms().size(); i++) {
-			rooms.add(super.getMain().getIcesinema().getRooms().get(i).getName());
-		}
-		observableRooms = FXCollections.observableList(rooms);
-		comboBoxRooms.setItems(observableRooms);
-
+		
 		// Set datePicker
 		nowDate = LocalDate.now();
 		dPFunctionDay.setValue(nowDate);
@@ -131,6 +122,17 @@ public class FunctionController extends Controller{
 		togPM.setToggleGroup(toggleAM_PM);
 		togAM.setSelected(true);
 
+	}
+	
+	@FXML
+	public void roomOptions() {
+		// Rooms options comboBox
+		rooms = new ArrayList<String>();
+		for (int i = 0; i < super.getMain().getIcesinema().getRooms().size(); i++) {
+			rooms.add(super.getMain().getIcesinema().getRooms().get(i).getName());
+		}
+		observableRooms = FXCollections.observableList(rooms);
+		comboBoxRooms.setItems(observableRooms);
 	}
 	
 	@FXML

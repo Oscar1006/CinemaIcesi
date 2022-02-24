@@ -5,7 +5,6 @@ import javafx.scene.image.Image;
 import java.io.IOException;
 
 import controller.Controller;
-import controller.LogInController;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.stage.Stage;
@@ -35,22 +34,23 @@ public class Main extends Application {
 	@Override
 	public void start(Stage primaryStage) {
 		try {
-			showWindow( LOGIN_FXML, LOGO_IMG);
+			showWindow(LOGIN_FXML, LOGO_IMG);
 			
 		} catch(Exception ex) {
 			ex.printStackTrace();
 		}
 	}
 	
-	public void showWindow(String windowScene, String windowIcon) {
+	public Controller showWindow(String windowScene, String windowIcon) {
+		Controller controller = new Controller();
 		try {
 			loader = new FXMLLoader(getClass().getResource(windowScene));
 			
 			root = loader.load();
-			
-			Controller controller = loader.getController();
+			controller = loader.getController();
 			controller.setMain(this);
-			 
+			
+			
 			scene = new Scene(root);
 			
 			newStage = new Stage();
@@ -60,7 +60,8 @@ public class Main extends Application {
 			currentStage = newStage;
 		} catch (IOException e) {
 			e.printStackTrace();
-		}	
+		}
+		return controller;
 	}
 	
 	public void switchScene(Controller controller, String nextScene) {
