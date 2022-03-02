@@ -26,8 +26,7 @@ public class PrincipalController extends Controller{
 
     @FXML
     public void createFunction() {
-    	 FunctionController fC = (FunctionController) super.getMain().showWindow(Main.FUNCTION_FXML, Main.REEL_IMG);
-    	 fC.roomOptions();
+    	 super.getMain().showWindow(Main.FUNCTION_FXML, Main.REEL_IMG);
     }
 
     @FXML

@@ -2,10 +2,8 @@ package controller;
 
 import java.time.LocalDate;
 import java.time.format.FormatStyle;
-import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
-import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -24,6 +22,7 @@ import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyEvent;
 import javafx.util.Callback;
+import javafx.util.StringConverter;
 import javafx.util.converter.LocalDateStringConverter;
 import model.Film;
 import model.Room;
@@ -35,11 +34,9 @@ public class FunctionController extends Controller{
 	private TextField txtFilmName;
 
 	@FXML
-	private ComboBox<String> comboBoxRooms;
+	private ComboBox<Room> comboBoxRooms;
 
-	private List<String> rooms;
-
-	private ObservableList<String> observableRooms;
+	private ObservableList<Room> observableRooms;
 
 	@FXML
 	private DatePicker dPFunctionDay;
@@ -65,8 +62,6 @@ public class FunctionController extends Controller{
 	@FXML
 	private Button btnCreateFunction;
 
-	//private Cinema icesinema;
-	
 	private Film film;
 	private String filmName;
 	private int filmDuration;
@@ -81,13 +76,12 @@ public class FunctionController extends Controller{
 	private Room functionRoom;
 	private String roomName;
 	
-
 	private Alert alert;
-
+ 
 	@FXML
 	public void initialize() {
-		//icesinema = new Cinema();
 		alert = new Alert(AlertType.ERROR);
+		
 		
 		// Set datePicker
 		nowDate = LocalDate.now();
@@ -121,18 +115,25 @@ public class FunctionController extends Controller{
 		togAM.setToggleGroup(toggleAM_PM);
 		togPM.setToggleGroup(toggleAM_PM);
 		togAM.setSelected(true);
-
 	}
 	
 	@FXML
-	public void roomOptions() {
+	@Override
+	public void intializeData() {
 		// Rooms options comboBox
-		rooms = new ArrayList<String>();
-		for (int i = 0; i < super.getMain().getIcesinema().getRooms().size(); i++) {
-			rooms.add(super.getMain().getIcesinema().getRooms().get(i).getName());
-		}
-		observableRooms = FXCollections.observableList(rooms);
+		observableRooms = FXCollections.observableList(super.getMain().getIcesinema().getRooms());
 		comboBoxRooms.setItems(observableRooms);
+		comboBoxRooms.setConverter(new StringConverter<Room>() {
+			@Override
+			public String toString(Room r) {
+				return r.getName();
+			}
+			@Override
+			public Room fromString(String string) {
+				return null;
+			}
+			
+		});
 	}
 	
 	@FXML
@@ -167,18 +168,18 @@ public class FunctionController extends Controller{
 			date = new GregorianCalendar(year, month, day, hour, minute);
 			
 			//Select room
-			roomName = comboBoxRooms.getSelectionModel().getSelectedItem();
+			roomName = comboBoxRooms.getSelectionModel().getSelectedItem().getName();
 			boolean found = false;
+			
 			for (int i = 0; i < super.getMain().getIcesinema().getRooms().size() && !found; i++) {
 				if (super.getMain().getIcesinema().getRooms().get(i).getName().equals(roomName)) {
 					functionRoom = super.getMain().getIcesinema().getRooms().get(i);
 					found = true;
 				}
 			}
-			
+	
 			//Create function
 			super.getMain().getIcesinema().createCinemaFunction(film, date, functionRoom);
 		}
-		
 	}
 }

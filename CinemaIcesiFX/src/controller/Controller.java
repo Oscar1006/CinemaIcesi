@@ -11,6 +11,10 @@ public class Controller {
 		//this.main = new Main();
 	}
 	
+	public void intializeData() {
+		
+	}
+	
 	public Main getMain() {
 		return main;
 	}

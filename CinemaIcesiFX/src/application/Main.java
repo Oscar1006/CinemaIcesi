@@ -41,7 +41,7 @@ public class Main extends Application {
 		}
 	}
 	
-	public Controller showWindow(String windowScene, String windowIcon) {
+	public void showWindow(String windowScene, String windowIcon) {
 		Controller controller = new Controller();
 		try {
 			loader = new FXMLLoader(getClass().getResource(windowScene));
@@ -49,6 +49,7 @@ public class Main extends Application {
 			root = loader.load();
 			controller = loader.getController();
 			controller.setMain(this);
+			controller.intializeData();
 			
 			
 			scene = new Scene(root);
@@ -61,7 +62,6 @@ public class Main extends Application {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		return controller;
 	}
 	
 	public void switchScene(Controller controller, String nextScene) {
