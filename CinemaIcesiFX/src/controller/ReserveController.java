@@ -38,12 +38,20 @@ public class ReserveController extends Controller {
 		ObservableList<CinemaShow> observableShows;
 		observableShows = FXCollections.observableList(super.getMain().getIcesinema().getShows());
 		cbxCinemaShows.setItems(observableShows);
-		
 	}
 	
 	public void showSeats() {
+		
 		int indexShow = cbxCinemaShows.getSelectionModel().getSelectedIndex();
 		boolean[][] reserved = super.getMain().getIcesinema().getReservedSeatsOfCinemaShow(indexShow);
+		
+		for (int f = 0; f < gpSeats.getParent().g; f++) {
+			for (int c = 0; c < reserved[0].length ; c++) {
+				gpSeats.add(seats[i], c, f);	
+			}			
+		}
+		
+		
 		
 		//Creating a graphic (image)
 	    Image imgAvailableSeat = new Image(Main.AVAILABLE_SEAT_IMG);
@@ -56,13 +64,21 @@ public class ReserveController extends Controller {
 		    viewAvailableSeat.setFitHeight(50);
 		    viewAvailableSeat.setPreserveRatio(true);
 			seats[i] = new ToggleButton();
-			seats[i].setGraphic(viewAvailableSeat);;
+			seats[i].setGraphic(viewAvailableSeat);
 		}
 		
 		int i = 0;
 		for (int f = 0; f < reserved.length && i<seats.length; f++) {
 			for (int c = 0; c < reserved[0].length ; c++) {
 				gpSeats.add(seats[i], c, f);
+				if(reserved[f][c]) {
+					seats[i].setDisable(true);
+					ImageView viewReservedSeat = new ImageView(imgReservedSeat);
+				    viewReservedSeat.setFitHeight(50);
+				    viewReservedSeat.setPreserveRatio(true);
+					seats[i] = new ToggleButton();
+					seats[i].setGraphic(viewReservedSeat);
+				}
 				i++;	
 			}
 		}

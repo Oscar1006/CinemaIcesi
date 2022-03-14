@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.FormatStyle;
 import java.util.GregorianCalendar;
 
+import application.Main;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -163,6 +164,8 @@ public class FunctionController extends Controller{
 			//Close window
 			currentStage = (Stage) this.btnCreateFunction.getScene().getWindow();
 			currentStage.close();
+			//Save data
+			Main.serialize();
 		}
 	}
 }

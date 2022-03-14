@@ -32,7 +32,7 @@ public class PrincipalController extends Controller{
     }
     @FXML
     public void generateReport(ActionEvent event) {
-
+    	System.out.print(super.getMain().getIcesinema().generateReport());
     }
 
 

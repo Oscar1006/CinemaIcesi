@@ -4,17 +4,20 @@ package model;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
 import exception.LogInException;
 
-public class Cinema {
+public class Cinema implements Serializable {
+
+
+	private static final long serialVersionUID = 1L;
 
 	private ArrayList<Room> rooms;
 	private ArrayList<Film> films;
 	private ArrayList<CinemaShow> shows;
-	private ArrayList<Person> spectators;
 	private ArrayList<UniversityWalfarePerson> universityWPersons;
 	
 
@@ -23,7 +26,7 @@ public class Cinema {
 		films = new ArrayList<>();
 		shows = new ArrayList<>();
 		universityWPersons = new ArrayList<>();
-		spectators = new ArrayList<>();
+		
 		readData();
 	}
 
@@ -45,10 +48,7 @@ public class Cinema {
 		shows.add(function);
 	}
 	
-	public void addSpectator(String name, String id) {
-		Person newSpectator = new UniversityWalfarePerson(name, id);
-		spectators.add(newSpectator);
-	}
+	
 
 	public void addUWPerson(String name, String id) {
 		UniversityWalfarePerson newUWPerson = new UniversityWalfarePerson(name, id);
@@ -79,7 +79,7 @@ public class Cinema {
 		createCinemaFunction("James Bond", 100, date2, 1);
 		
 		try {
-			BufferedReader explorer = new BufferedReader(new FileReader("persons.txt"));
+			BufferedReader explorer = new BufferedReader(new FileReader("files/persons.txt"));
 			String currentLine;
 
 			while ((currentLine = explorer.readLine()) != null) {
@@ -94,8 +94,17 @@ public class Cinema {
 	}
 	
 	public void reserveSeat(String spectatorName, String spectatorID, int showIndex, int seatRow, int seatColumn) {
-		addSpectator(spectatorName, spectatorID);
+		shows.get(showIndex).addViewer(spectatorID, spectatorName);
 		shows.get(showIndex).getRoom().reserveSeat(seatRow, seatColumn);
+	}
+	
+	public String generateReport() {
+		String report = "";
+		for (int i = 0; i < shows.size(); i++) {
+			report += "\n"+shows.get(i).showReport() +"\n";
+		}
+		
+		return report;
 	}
 
 	public ArrayList<Room> getRooms() {
