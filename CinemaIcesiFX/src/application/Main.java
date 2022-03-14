@@ -18,9 +18,14 @@ public class Main extends Application {
 	public static final String LOGIN_FXML = "../view/Login.fxml";
 	public static final String PRINCIPAL_FXML = "../view/Principal.fxml";
 	public static final String FUNCTION_FXML = "../view/Function.fxml";
+	public static final String RESERVE_FXML = "../view/Reserve.fxml";
 	
 	public static final String LOGO_IMG = "file:../../images/logo.png";
 	public static final String REEL_IMG = "file:../../images/reel.png";
+	
+	public static final String AVAILABLE_SEAT_IMG = "file:../../images/seat-available.png";
+	public static final String RESERVED_SEAT_IMG = "file:../../images/seat-reserved.png";
+	
 	
 	
 	private Parent root;

@@ -8,26 +8,31 @@ public class Room {
 	private boolean full;
 	private Seat seats[][];
 	private ArrayList<CinemaShow> shows;
+	private int rows;
+	private int columns;
 
+	public Room() {
+		
+	}
 	public Room(String name, int rows, int columns) {
 		this.name = name;
 		seats = new Seat[rows][columns];
+		for (int r = 0; r < rows; r++) {
+			for (int c = 0; c < columns; c++) {
+				seats[r][c] = new Seat();
+			}
+		}
 		full = false;
 		shows = new ArrayList<>();
+		this.rows = rows;
+		this.columns = columns;
 	}
+	
 
-	public String reserveSeat(int row, int column) {
-		String message = "Seat reserved";
-		try {
-			if (seats[row - 1][column - 1].isReserved()) {
-				message = "Sorry, that seat has been already reserved before";
-			} else {
-				seats[row - 1][column - 1].setReserved(true);
-			}
-		} catch (ArrayIndexOutOfBoundsException e) {
-			message = "That seat does not exist";
+	public void reserveSeat(int row, int column) {
+		if (!seats[row][column].isReserved()) {
+			seats[row][column].setReserved(true);
 		}
-		return message;
 	}
 
 	public String getName() {
@@ -40,6 +45,18 @@ public class Room {
 
 	public Seat[][] getSeats() {
 		return seats;
+	}
+	
+	public boolean[][] reservedSeats(){
+		boolean[][] reservedSeats = new boolean[rows][columns];
+		
+		for (int r = 0; r < rows; r++) {
+			for (int c = 0; c < columns; c++) {
+				reservedSeats[r][c] = seats[r][c].isReserved();
+			}
+		}
+		
+		return reservedSeats;
 	}
 
 	public boolean isFull() {

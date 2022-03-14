@@ -10,8 +10,9 @@
 <?import javafx.scene.control.ToggleButton?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="441.0" prefWidth="408.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FunctionController">
+<VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="440.0" prefWidth="400.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.FunctionController">
    <children>
       <HBox alignment="CENTER" prefHeight="70.0" prefWidth="200.0">
          <children>
@@ -19,11 +20,17 @@
                <HBox.margin>
                   <Insets left="10.0" right="10.0" />
                </HBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
             </Label>
             <TextField fx:id="txtFilmName">
                <HBox.margin>
                   <Insets left="10.0" right="10.0" />
                </HBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
             </TextField>
          </children>
       </HBox>
@@ -33,6 +40,9 @@
                <HBox.margin>
                   <Insets left="10.0" right="10.0" />
                </HBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
             </Label>
             <ComboBox fx:id="comboBoxRooms" prefWidth="150.0">
                <HBox.margin>
@@ -47,6 +57,9 @@
                <HBox.margin>
                   <Insets left="10.0" right="10.0" />
                </HBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
             </Label>
             <DatePicker fx:id="dPFunctionDay" prefWidth="222.0" />
          </children>
@@ -57,6 +70,9 @@
                <HBox.margin>
                   <Insets left="10.0" right="10.0" />
                </HBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
             </Label>
             <Spinner fx:id="spHours" editable="false" prefHeight="25.0" prefWidth="60.0">
                <HBox.margin>
@@ -73,11 +89,17 @@
                <HBox.margin>
                   <Insets left="10.0" right="2.0" />
                </HBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
             </ToggleButton>
             <ToggleButton fx:id="togPM" mnemonicParsing="false" text="PM">
                <HBox.margin>
                   <Insets left="2.0" right="10.0" />
                </HBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
             </ToggleButton>
          </children>
       </HBox>
@@ -87,21 +109,33 @@
                <HBox.margin>
                   <Insets left="10.0" right="10.0" />
                </HBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font>
             </Label>
             <TextField fx:id="txtMinutesDuration" onKeyTyped="#only3Numbers" prefWidth="70.0">
                <HBox.margin>
-                  <Insets left="10.0" right="10.0" />
+                  <Insets left="10.0" right="5.0" />
                </HBox.margin>
+               <font>
+                  <Font size="14.0" />
+               </font>
             </TextField>
             <Label text="minutos">
                <HBox.margin>
-                  <Insets left="10.0" right="10.0" />
-               </HBox.margin></Label>
+                  <Insets right="10.0" />
+               </HBox.margin>
+               <font>
+                  <Font size="15.0" />
+               </font></Label>
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="70.0" prefWidth="200.0">
          <children>
-            <Button fx:id="btnCreateFunction" mnemonicParsing="false" onAction="#createFunction" text="Crear función" />
+            <Button fx:id="btnCreateFunction" mnemonicParsing="false" onAction="#createFunction" text="Crear función">
+               <font>
+                  <Font size="15.0" />
+               </font></Button>
          </children>
       </HBox>
    </children>

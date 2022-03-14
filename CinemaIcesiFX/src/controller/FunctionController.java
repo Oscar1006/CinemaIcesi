@@ -2,7 +2,6 @@ package controller;
 
 import java.time.LocalDate;
 import java.time.format.FormatStyle;
-import java.util.Calendar;
 import java.util.GregorianCalendar;
 
 import javafx.collections.FXCollections;
@@ -21,10 +20,11 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.KeyEvent;
+import javafx.stage.Stage;
 import javafx.util.Callback;
 import javafx.util.StringConverter;
 import javafx.util.converter.LocalDateStringConverter;
-import model.Film;
+
 import model.Room;
 
 public class FunctionController extends Controller{
@@ -35,8 +35,6 @@ public class FunctionController extends Controller{
 
 	@FXML
 	private ComboBox<Room> comboBoxRooms;
-
-	private ObservableList<Room> observableRooms;
 
 	@FXML
 	private DatePicker dPFunctionDay;
@@ -61,23 +59,10 @@ public class FunctionController extends Controller{
 
 	@FXML
 	private Button btnCreateFunction;
-
-	private Film film;
-	private String filmName;
-	private int filmDuration;
-	
-	private Calendar date;
-	private int year;
-	private int month;
-	private int day;
-	private int hour;
-	private int minute;
-	
-	private Room functionRoom;
-	private String roomName;
 	
 	private Alert alert;
- 
+	
+	private Stage currentStage;
 	@FXML
 	public void initialize() {
 		alert = new Alert(AlertType.ERROR);
@@ -88,6 +73,7 @@ public class FunctionController extends Controller{
 		dPFunctionDay.setValue(nowDate);
 		dPFunctionDay.setEditable(false);
 		dPFunctionDay.setConverter(new LocalDateStringConverter(FormatStyle.FULL));
+		
 		Callback<DatePicker, DateCell> dayCellFactory = dp -> new DateCell() {
 			@Override
 			public void updateItem(LocalDate item, boolean empty) {
@@ -121,6 +107,7 @@ public class FunctionController extends Controller{
 	@Override
 	public void intializeData() {
 		// Rooms options comboBox
+		ObservableList<Room> observableRooms;
 		observableRooms = FXCollections.observableList(super.getMain().getIcesinema().getRooms());
 		comboBoxRooms.setItems(observableRooms);
 		comboBoxRooms.setConverter(new StringConverter<Room>() {
@@ -132,7 +119,6 @@ public class FunctionController extends Controller{
 			public Room fromString(String string) {
 				return null;
 			}
-			
 		});
 	}
 	
@@ -152,34 +138,31 @@ public class FunctionController extends Controller{
 			alert.showAndWait();
 		}else {
 			//Create film
-			filmName = txtFilmName.getText();
-			filmDuration = Integer.parseInt(txtMinutesDuration.getText());
-			film = new Film(filmName, filmDuration);
+			String filmName = txtFilmName.getText();
+			int filmDuration = Integer.parseInt(txtMinutesDuration.getText());
+			
 			
 			//Create Calendar
-			year = dPFunctionDay.getValue().getYear();
-			month = dPFunctionDay.getValue().getMonthValue();
-			day = dPFunctionDay.getValue().getDayOfMonth();
-			hour = spHours.getValue();
+			int year = dPFunctionDay.getValue().getYear();
+			int month = dPFunctionDay.getValue().getMonthValue();
+			int day = dPFunctionDay.getValue().getDayOfMonth();
+			int hour = spHours.getValue();
 			if(toggleAM_PM.getSelectedToggle().equals(togPM)) {
 				hour += 12;
 			}
-			minute = spMinutes.getValue();
-			date = new GregorianCalendar(year, month, day, hour, minute);
+			int minute = spMinutes.getValue();
+			GregorianCalendar date = new GregorianCalendar(year, month, day, hour, minute);
 			
 			//Select room
-			roomName = comboBoxRooms.getSelectionModel().getSelectedItem().getName();
-			boolean found = false;
+			int roomIndex = comboBoxRooms.getSelectionModel().getSelectedIndex();
 			
-			for (int i = 0; i < super.getMain().getIcesinema().getRooms().size() && !found; i++) {
-				if (super.getMain().getIcesinema().getRooms().get(i).getName().equals(roomName)) {
-					functionRoom = super.getMain().getIcesinema().getRooms().get(i);
-					found = true;
-				}
-			}
 	
 			//Create function
-			super.getMain().getIcesinema().createCinemaFunction(film, date, functionRoom);
+			super.getMain().getIcesinema().createCinemaFunction(filmName, filmDuration, date, roomIndex);
+			
+			//Close window
+			currentStage = (Stage) this.btnCreateFunction.getScene().getWindow();
+			currentStage.close();
 		}
 	}
 }

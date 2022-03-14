@@ -7,8 +7,6 @@ import javafx.scene.control.Button;
 
 public class PrincipalController extends Controller{
 
-    
-
 	@FXML
     private Button btnCreateFunction;
 
@@ -17,7 +15,6 @@ public class PrincipalController extends Controller{
 
     @FXML
     private Button btnReserveSeat;
-    
     
 	@FXML
 	private void initialize() {
@@ -28,15 +25,16 @@ public class PrincipalController extends Controller{
     public void createFunction() {
     	 super.getMain().showWindow(Main.FUNCTION_FXML, Main.REEL_IMG);
     }
-
+    
+    @FXML
+    public void reserveSeat(ActionEvent event) {
+    	super.getMain().showWindow(Main.RESERVE_FXML, Main.REEL_IMG);
+    }
     @FXML
     public void generateReport(ActionEvent event) {
 
     }
 
-    @FXML
-    public void reserveSeat(ActionEvent event) {
 
-    }
 
 }

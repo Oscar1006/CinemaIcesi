@@ -1,14 +1,15 @@
 package model;
 
 import java.util.Calendar;
+import java.util.GregorianCalendar;
 
 public class CinemaShow {
 	
 	private Film film;
-	private Calendar date;
+	private GregorianCalendar date;
 	private Room room;
 	
-	public CinemaShow(Film f, Calendar d, Room r) {
+	public CinemaShow(Film f, GregorianCalendar d, Room r) {
 		film = f;
 		date = d;
 		room = r;
@@ -22,11 +23,11 @@ public class CinemaShow {
 		this.film = film;
 	}
 
-	public Calendar getDate() {
+	public GregorianCalendar getDate() {
 		return date;
 	}
 
-	public void setDate(Calendar date) {
+	public void setDate(GregorianCalendar date) {
 		this.date = date;
 	}
 
@@ -36,5 +37,15 @@ public class CinemaShow {
 
 	public void setRoom(Room room) {
 		this.room = room;
+	}
+
+	@Override
+	public String toString() {
+		int day = date.get(Calendar.DAY_OF_MONTH);
+		int month = date.get(Calendar.MONTH);
+		int hour = date.get(Calendar.HOUR_OF_DAY);
+		int minutes = date.get(Calendar.MINUTE);
+		
+		return   film.getName() + " Day:" +  + day + " Month:" + month + " Time:" + hour + ":" +  minutes + " " + room.getName();
 	}
 }
