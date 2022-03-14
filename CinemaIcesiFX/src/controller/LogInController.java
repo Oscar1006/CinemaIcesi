@@ -36,6 +36,7 @@ public class LogInController extends Controller {
 		try {
 			super.getMain().getIcesinema().logInUWPerson(idToCheck);
 			super.getMain().switchScene(new PrincipalController(), Main.PRINCIPAL_FXML);
+			
 		} catch (LogInException ex) {
 			alert.setTitle("Error");
 			alert.setHeaderText("Usuario no autorizado");

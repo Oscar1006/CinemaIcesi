@@ -7,16 +7,17 @@ import java.util.GregorianCalendar;
 
 public class CinemaShow implements Serializable {
 	
-	private static final long serialVersionUID = 1L;
+	
 	private Film film;
 	private GregorianCalendar date;
 	private Room room;
+	
 	private ArrayList<Person> viewers;
 	
 	public CinemaShow(Film f, GregorianCalendar d, Room r) {
 		film = f;
 		date = d;
-		room = r;
+		room = new Room(r.getName(), r.getSeats().length, r.getSeats()[0].length);
 		viewers = new ArrayList<>();
 	}
 
@@ -57,9 +58,9 @@ public class CinemaShow implements Serializable {
 	public ArrayList<Person> getViewers() {
 		return viewers;
 	}
+	
 	public void addViewer(String id, String name) {
-		Person newViewer = new Person(name, id);
-		viewers.add(newViewer);
+		viewers.add(new Person(name, id));
 	}
 	
 	public String showReport() {

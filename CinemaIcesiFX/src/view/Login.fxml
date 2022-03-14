@@ -38,7 +38,7 @@
                         <Insets bottom="10.0" />
                      </VBox.margin>
                   </Label>
-                  <TextField fx:id="txtId" onKeyTyped="#noSpace" onAction="#logIn">
+                  <TextField fx:id="txtId" onAction="#logIn" onKeyTyped="#noSpace">
                      <font>
                         <Font size="18.0" />
                      </font>
@@ -46,7 +46,7 @@
                         <Insets bottom="10.0" left="30.0" right="30.0" />
                      </VBox.margin>
                   </TextField>
-                  <Button fx:id="btnLogIn" mnemonicParsing="false" onAction="#logIn" text="Ingresar">
+                  <Button fx:id="btnLogIn" mnemonicParsing="false" onAction="#logIn" style="-fx-background-color: #16558C;" text="Ingresar" textFill="WHITE">
                      <font>
                         <Font size="18.0" />
                      </font>

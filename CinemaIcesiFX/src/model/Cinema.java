@@ -10,10 +10,9 @@ import java.util.GregorianCalendar;
 
 import exception.LogInException;
 
-public class Cinema implements Serializable {
+public class Cinema implements Serializable{
 
 
-	private static final long serialVersionUID = 1L;
 
 	private ArrayList<Room> rooms;
 	private ArrayList<Film> films;

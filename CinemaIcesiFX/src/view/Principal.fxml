@@ -13,20 +13,20 @@
    <children>
       <HBox alignment="CENTER" prefHeight="100.0" prefWidth="570.0">
          <children>
-            <Label text="Hola Oscar" HBox.hgrow="ALWAYS">
+            <Label text="Bienvenido a Icesinema" HBox.hgrow="ALWAYS">
                <font>
-                  <Font size="24.0" />
+                  <Font size="30.0" />
                </font>
                <HBox.margin>
-                  <Insets right="50.0" />
+                  <Insets right="20.0" />
                </HBox.margin>
             </Label>
-            <ImageView fitHeight="70.0" fitWidth="76.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
+            <ImageView fitHeight="97.0" fitWidth="101.0" pickOnBounds="true" preserveRatio="true" HBox.hgrow="ALWAYS">
                <image>
                   <Image url="@../../images/logo.png" />
                </image>
                <HBox.margin>
-                  <Insets left="50.0" />
+                  <Insets left="20.0" />
                </HBox.margin>
             </ImageView>
          </children>
@@ -40,7 +40,7 @@
                         <Image url="@../../images/function.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="btnCreateFunction" mnemonicParsing="false" onAction="#createFunction" text="Crear función" />
+                  <Button fx:id="btnCreateFunction" mnemonicParsing="false" onAction="#createFunction" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: #16558C;" text="Crear función" textFill="WHITE" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="300.0" prefWidth="190.0" HBox.hgrow="ALWAYS">
@@ -50,7 +50,7 @@
                         <Image url="@../../images/seat.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="btnReserveSeat" mnemonicParsing="false" onAction="#reserveSeat" text="Reservar silla" />
+                  <Button fx:id="btnReserveSeat" mnemonicParsing="false" onAction="#reserveSeat" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: #16558C;" text="Reservar silla" textFill="WHITE" />
                </children>
             </VBox>
             <VBox alignment="CENTER" prefHeight="300.0" prefWidth="190.0" HBox.hgrow="ALWAYS">
@@ -63,7 +63,7 @@
                         <Insets left="10.0" />
                      </VBox.margin>
                   </ImageView>
-                  <Button fx:id="btnGenerateReport" mnemonicParsing="false" onAction="#generateReport" text="Generar Reporte" />
+                  <Button fx:id="btnGenerateReport" mnemonicParsing="false" onAction="#generateReport" prefHeight="30.0" prefWidth="110.0" style="-fx-background-color: #16558C;" text="Generar Reporte" textFill="WHITE" />
                </children>
             </VBox>
          </children>

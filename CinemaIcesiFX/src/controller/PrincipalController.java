@@ -16,10 +16,7 @@ public class PrincipalController extends Controller{
     @FXML
     private Button btnReserveSeat;
     
-	@FXML
-	private void initialize() {
-		
-	}
+
 
     @FXML
     public void createFunction() {
