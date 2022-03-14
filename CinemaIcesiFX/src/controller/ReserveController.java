@@ -56,6 +56,8 @@ public class ReserveController extends Controller {
 		observableShows = FXCollections.observableList(super.getMain().getIcesinema().getShows());
 		cbxCinemaShows.setItems(observableShows);
 	}
+	
+	
 
 	public void showSeats() {
 		cbxCinemaShows.setDisable(true);
@@ -74,10 +76,19 @@ public class ReserveController extends Controller {
 				viewAvailableSeat.setFitHeight(50);
 				viewAvailableSeat.setPreserveRatio(true);
 				seats[i][j] = new ToggleButton();
-				seats[i][j].setGraphic(viewAvailableSeat);	
-			}
-			
+				seats[i][j].setGraphic(viewAvailableSeat);
+				seats[i][j].setStyle("-fx-background-color: #F2F2F2");
+				seats[i][j].setOnAction(actionEvent ->  {
+				   
+					ToggleButton tg =(ToggleButton)actionEvent.getSource();
+					if(tg.isSelected()) {
+						tg.setStyle("-fx-background-color: #F2CB9B");
+					}else {
+						tg.setStyle("-fx-background-color: #F2F2F2");
+					}
+				});
 
+			}
 		}
 		
 		for (int f = 0; f < reserved.length; f++) {

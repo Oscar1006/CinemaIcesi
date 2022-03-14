@@ -24,9 +24,9 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="txtFilmName">
+            <TextField fx:id="txtFilmName" prefHeight="29.0" prefWidth="189.0">
                <HBox.margin>
-                  <Insets left="10.0" right="10.0" />
+                  <Insets right="10.0" />
                </HBox.margin>
                <font>
                   <Font size="14.0" />
@@ -61,7 +61,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <DatePicker fx:id="dPFunctionDay" prefWidth="222.0" />
+            <DatePicker fx:id="dPFunctionDay" prefHeight="25.0" prefWidth="250.0" />
          </children>
       </HBox>
       <HBox alignment="CENTER" prefHeight="70.0" prefWidth="270.0">
@@ -113,7 +113,7 @@
                   <Font size="15.0" />
                </font>
             </Label>
-            <TextField fx:id="txtMinutesDuration" onKeyTyped="#only3Numbers" prefWidth="70.0">
+            <TextField fx:id="txtMinutesDuration" onKeyTyped="#only3Numbers" prefWidth="66.0">
                <HBox.margin>
                   <Insets left="10.0" right="5.0" />
                </HBox.margin>
@@ -132,7 +132,7 @@
       </HBox>
       <HBox alignment="CENTER" prefHeight="70.0" prefWidth="200.0">
          <children>
-            <Button fx:id="btnCreateFunction" mnemonicParsing="false" onAction="#createFunction" text="Crear función">
+            <Button fx:id="btnCreateFunction" mnemonicParsing="false" onAction="#createFunction" prefHeight="41.0" prefWidth="132.0" style="-fx-background-color: #16558C;" text="Crear función" textFill="WHITE">
                <font>
                   <Font size="15.0" />
                </font></Button>

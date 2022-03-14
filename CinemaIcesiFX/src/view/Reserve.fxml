@@ -14,15 +14,23 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox alignment="CENTER" prefHeight="600.0" prefWidth="950.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReserveController">
+<HBox alignment="CENTER" prefHeight="600.0" prefWidth="1000.0" style="-fx-background-color: white;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ReserveController">
    <children>
-      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="310.0">
+      <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="350.0">
          <children>
-            <ImageView fitHeight="201.0" fitWidth="272.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="215.0" fitWidth="217.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../../images/logo.png" />
                </image>
+               <VBox.margin>
+                  <Insets bottom="10.0" />
+               </VBox.margin>
             </ImageView>
+            <ComboBox fx:id="cbxCinemaShows" onAction="#showSeats" prefHeight="55.0" prefWidth="330.0" promptText="Función" style="-fx-background-color: #F2CB9B;">
+               <VBox.margin>
+                  <Insets bottom="10.0" top="10.0" />
+               </VBox.margin>
+            </ComboBox>
             <HBox alignment="CENTER_LEFT" layoutX="10.0" layoutY="10.0" prefHeight="70.0" prefWidth="200.0">
                <children>
                   <Label text="Nombre:">
@@ -33,9 +41,9 @@
                         <Insets left="5.0" right="5.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="txtSpectatorName" prefHeight="29.0" prefWidth="180.0">
+                  <TextField fx:id="txtSpectatorName" prefHeight="29.0" prefWidth="200.0">
                      <HBox.margin>
-                        <Insets left="30.0" />
+                        <Insets left="35.0" />
                      </HBox.margin>
                      <font>
                         <Font size="14.0" />
@@ -53,7 +61,7 @@
                         <Insets left="5.0" right="5.0" />
                      </HBox.margin>
                   </Label>
-                  <TextField fx:id="txtSpectatorId">
+                  <TextField fx:id="txtSpectatorId" prefWidth="200.0">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -61,23 +69,6 @@
                         <Font size="14.0" />
                      </font>
                   </TextField>
-               </children>
-            </HBox>
-            <HBox alignment="CENTER_LEFT" prefHeight="70.0" prefWidth="200.0">
-               <children>
-                  <Label text="Función:">
-                     <font>
-                        <Font size="15.0" />
-                     </font>
-                     <HBox.margin>
-                        <Insets left="5.0" right="5.0" />
-                     </HBox.margin>
-                  </Label>
-                  <ComboBox fx:id="cbxCinemaShows" onAction="#showSeats" prefHeight="60.0" prefWidth="220.0" style="-fx-background-color: #C1C2D9;">
-                     <HBox.margin>
-                        <Insets />
-                     </HBox.margin>
-                  </ComboBox>
                </children>
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="265.0" prefHeight="88.0" prefWidth="310.0">
