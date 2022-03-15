@@ -4,6 +4,7 @@ import javafx.scene.image.Image;
 
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -36,7 +37,7 @@ public class Main extends Application {
 	private Scene scene;
 	private FXMLLoader loader;
 
-	private static Cinema icesinema = new Cinema();
+	private Cinema icesinema = new Cinema();
 
 	@Override
 	public void start(Stage primaryStage) {
@@ -50,7 +51,7 @@ public class Main extends Application {
 		}
 	}
 
-	public static void serialize() {
+	public void serialize() {
 
 		File file = new File("files/dataCinema.txt");
 		FileOutputStream fos;
@@ -70,16 +71,23 @@ public class Main extends Application {
 		System.out.println("Serializado");
 	}
 	
-	public static void deserialize() throws IOException, ClassNotFoundException {
+	public void deserialize() {
 		File file = new File("files/dataCinema.txt");
-		FileInputStream fis = new FileInputStream(file);
-		ObjectInputStream ois = new ObjectInputStream(fis);
-		
-		icesinema = (Cinema) ois.readObject();
-		System.out.println(icesinema);
-		
-		ois.close();
-		fis.close();
+		FileInputStream fis;
+		try {
+			fis = new FileInputStream(file);
+			ObjectInputStream ois = new ObjectInputStream(fis);
+			
+			icesinema = (Cinema) ois.readObject();
+			System.out.println(icesinema);
+			
+			ois.close();
+			fis.close();
+				
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 		
 	}
 

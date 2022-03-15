@@ -136,7 +136,7 @@ public class ReserveController extends Controller {
 			currentStage = (Stage) this.btnReserve.getScene().getWindow();
 			currentStage.close();
 			//Save data
-			Main.serialize();
+			super.getMain().serialize();
 
 		}
 		

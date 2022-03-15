@@ -165,7 +165,7 @@ public class FunctionController extends Controller{
 			currentStage = (Stage) this.btnCreateFunction.getScene().getWindow();
 			currentStage.close();
 			//Save data
-			Main.serialize();
+			super.getMain().serialize();
 		}
 	}
 }
