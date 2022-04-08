@@ -79,5 +79,9 @@ public class Room implements Serializable {
 	public ArrayList<CinemaShow> getShows() {
 		return shows;
 	}
+	
+	public Seat getSeat(int row, int column) {
+		return seats[row][column];
+	}
 
 }

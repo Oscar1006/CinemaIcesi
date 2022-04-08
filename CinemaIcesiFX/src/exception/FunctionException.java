@@ -6,7 +6,7 @@ public class FunctionException extends Exception {
 	
 	@Override
 	public String getMessage() {
-		return "Please fill all the fields";
+		return "Please fill all the fields and be sure there is not another function at the same time";
 	}
 
 }

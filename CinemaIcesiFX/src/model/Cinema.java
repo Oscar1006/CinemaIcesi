@@ -8,7 +8,9 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.GregorianCalendar;
 
+import exception.FunctionException;
 import exception.LogInException;
+import exception.ReservedSeatException;
 
 public class Cinema implements Serializable{
 
@@ -40,7 +42,7 @@ public class Cinema implements Serializable{
 		return newFilm;
 	}
 
-	public void createCinemaFunction(String filmName, int filmDuration, GregorianCalendar d, int roomIndex) {
+	public void createCinemaFunction (String filmName, int filmDuration, GregorianCalendar d, int roomIndex) throws FunctionException  {
 		Film f = addFilm(filmName, filmDuration);
 		Room functionRoom = rooms.get(roomIndex);
 		CinemaShow function = new CinemaShow(f, d, functionRoom);
@@ -72,10 +74,16 @@ public class Cinema implements Serializable{
 		
 		GregorianCalendar date1 = new GregorianCalendar(2022, 3, 11, 10, 0);
 		GregorianCalendar date2 = new GregorianCalendar(2022, 4, 11, 14, 0);
-		createCinemaFunction("Harry Potter", 120, date1, 0);
-		createCinemaFunction("Spiderman", 150, date1, 1);
-		createCinemaFunction("James Bond", 100, date2, 0);
-		createCinemaFunction("James Bond", 100, date2, 1);
+		try {
+			createCinemaFunction("Harry Potter", 120, date1, 0);
+			createCinemaFunction("Spiderman", 150, date1, 1);
+			createCinemaFunction("James Bond", 100, date2, 0);
+			createCinemaFunction("James Bond", 100, date2, 1);
+			
+		} catch (FunctionException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 		
 		try {
 			BufferedReader explorer = new BufferedReader(new FileReader("files/persons.txt"));
@@ -92,9 +100,13 @@ public class Cinema implements Serializable{
 		}
 	}
 	
-	public void reserveSeat(String spectatorName, String spectatorID, int showIndex, int seatRow, int seatColumn) {
-		shows.get(showIndex).addViewer(spectatorID, spectatorName);
-		shows.get(showIndex).getRoom().reserveSeat(seatRow, seatColumn);
+	public void reserveSeat(String spectatorName, String spectatorID, int showIndex, int seatRow, int seatColumn) throws ReservedSeatException {
+		if(shows.get(showIndex).getRoom().getSeat(seatRow, seatColumn).isReserved()) {
+			throw new ReservedSeatException();			
+		}else {
+			shows.get(showIndex).addViewer(spectatorID, spectatorName);
+			shows.get(showIndex).getRoom().reserveSeat(seatRow, seatColumn);
+		}
 	}
 	
 	public String generateReport() {
@@ -113,6 +125,9 @@ public class Cinema implements Serializable{
 	public ArrayList<CinemaShow> getShows() {
 		return shows;
 	}
+	public CinemaShow getShow(int index) {
+		return shows.get(index);
+	}
 	
 	public boolean[][] getReservedSeatsOfCinemaShow(int index) {
 		return shows.get(index).getRoom().reservedSeats();
@@ -123,3 +138,5 @@ public class Cinema implements Serializable{
 	}
 	
 }
+
+

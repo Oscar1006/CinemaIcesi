@@ -5,6 +5,7 @@ import java.time.format.FormatStyle;
 import java.util.GregorianCalendar;
 
 import application.Main;
+import exception.FunctionException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -159,7 +160,13 @@ public class FunctionController extends Controller{
 			
 	
 			//Create function
-			super.getMain().getIcesinema().createCinemaFunction(filmName, filmDuration, date, roomIndex);
+			try {
+				super.getMain().getIcesinema().createCinemaFunction(filmName, filmDuration, date, roomIndex);
+			} catch (FunctionException e1) {
+				alert.setTitle("Error");
+				alert.setHeaderText(e1.getMessage());
+				alert.showAndWait();
+			}
 			
 			//Close window
 			currentStage = (Stage) this.btnCreateFunction.getScene().getWindow();

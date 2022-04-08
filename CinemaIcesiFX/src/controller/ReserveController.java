@@ -1,6 +1,7 @@
 package controller;
 
 import application.Main;
+import exception.ReservedSeatException;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
@@ -127,7 +128,11 @@ public class ReserveController extends Controller {
 			for (int i = 0; i < seats.length; i++) {
 				for (int j = 0; j < seats[0].length; j++) {
 					if(seats[i][j].isSelected()) {
-						super.getMain().getIcesinema().reserveSeat(name, id, indexShow, i, j);;
+						try {
+							super.getMain().getIcesinema().reserveSeat(name, id, indexShow, i, j);
+						} catch (ReservedSeatException e) {
+							e.printStackTrace();
+						}
 					}
 				}
 			}
